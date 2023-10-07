@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Transactions from "./components/Transactions";
 import Buttons from "./components/Buttons";
-import Chart from "./components/Chart";
 import axios from "axios";
 import "./App.css";
 
@@ -9,7 +8,6 @@ function App() {
   const [price, setPrice] = useState(null);
   const [balance, setBalance] = useState(null);
   const [transactions, setTransactions] = useState([]);
-  const [chartData, setChartData] = useState(null);
 
   const apiKey = process.env.REACT_APP_X_API_KEY;
 
@@ -22,9 +20,8 @@ function App() {
       // .then is a promise that will run when the API call is successful
       .then((res) => {
         // set price to only 2 decimal places
-        const formattedPrice = Number(res.data.data.amount).toFixed(2)
+        const formattedPrice = Number(res.data.data.amount).toFixed(2);
         setPrice(formattedPrice);
-        updateChartData(formattedPrice);
       })
       // .catch is a promise that will run if the API call fails
       .catch((err) => {
@@ -59,36 +56,6 @@ function App() {
       .catch((err) => console.log(err));
   };
 
-  const updateChartData = (currentPrice) => {
-    const timestamp = Date.now();
-    // We are able to grab the previous state to look at it and do logic before adding new data to it
-    setChartData((prevState) => {
-      // If we have no previous state, create a new array with the new price data
-      if (!prevState)
-        return [
-          {
-            x: timestamp,
-            y: Number(currentPrice),
-          },
-        ];
-      // If the timestamp or price has not changed, we don't want to add a new point
-      if (
-        prevState[prevState.length - 1].x === timestamp ||
-        prevState[prevState.length - 1].y === Number(currentPrice)
-      )
-        return prevState;
-      // If we have previous state than keep it and add the new price data to the end of the array
-      return [
-        // Here we use the "spread operator" to copy the previous state
-        ...prevState,
-        {
-          x: timestamp,
-          y: Number(currentPrice),
-        },
-      ];
-    });
-  };
-
   // useEffect is a 'hook' or special function that will run code based on a trigger
   // The brackets hold the trigger that determines when the code inside of useEffect will run
   // Since it is empty [] that means this code will run once on page load
@@ -111,7 +78,7 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1>pleb wallet</h1>
+        <h1>Lightning Strike Wallet</h1>
       </header>
       <Buttons />
       <div className="row">
@@ -128,12 +95,9 @@ function App() {
         <div className="row-item">
           <Transactions transactions={transactions} />
         </div>
-        <div className="row-item">
-          <Chart chartData={chartData} />
-        </div>
       </div>
       <footer>
-        <p>Made by plebs, for plebs.</p>
+        <p>Made by socomers, for socomers.</p>
       </footer>
     </div>
   );

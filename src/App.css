@@ -1,15 +1,15 @@
 body {
-  background-color: #192734;
+  background: linear-gradient(to bottom, rgb(32, 62, 105), rgb(2, 4, 6));
   font-family: monospace;
 }
 
 header {
-  border-bottom: 2px solid #ffbf46;
+  border-bottom: 2px solid #f8dc42;
 }
 
 h1 {
   text-align: center;
-  color: #8a4fff;
+  color: #f8dc42;
 }
 
 img {
@@ -18,7 +18,7 @@ img {
 }
 
 footer {
-  border-top: 2px solid #ffbf46;
+  border-top: 2px solid #f8dc42;
   padding: 1%;
   text-align: center;
   position: fixed;
@@ -28,12 +28,12 @@ footer {
 }
 
 footer p {
-  color: #8a4fff;
+  color: #f8dc42;
 }
 
 .balance-card {
-  background-color: #ffbf46;
-  border: 2px solid #8a4fff;
+  background-color: #f8dc42;
+  border: 4px solid #b58b0e;
   padding: 1%;
   width: 25%;
   margin-top: 3%;
@@ -76,6 +76,22 @@ footer p {
 
 .transaction-amount {
   border-bottom: 1px solid black;
+}
+
+/* Center the transactions component */
+.transactions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+/* Reduce the font size and style the price component */
+.price {
+  font-size: 0.8rem;
+  color: #f8dc42;
+  /* Add any other styling you want */
 }
 
 @media (max-width: 876px) {
